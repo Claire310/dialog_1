@@ -29,8 +29,8 @@ htmls.conf
 
 格式說明：
 
-[template:模板ID] - 定義一個模板
-description=顯示名稱
-url=下載URL
-zip=ZIP檔名
-dir=解壓縮後的目錄名稱
+1. [template:模板ID] - 定義一個模板
+2. description=顯示名稱
+3. url=下載URL
+4. zip=ZIP檔名
+5. dir=解壓縮後的目錄名稱
