@@ -1,0 +1,10 @@
+NAME=$(dialog --title "資訊輸入框" --inputbox "你的名字:" 10 50 2>&1 >/dev/tty)
+
+if [[ -z "$NAME" ]]; then
+    echo "未輸入名稱，結束程式"
+    exit 1
+fi
+
+dialog --title "資訊輸入框" --inputbox "你的名字:" 10 50 
+dialog --title "歡迎光臨" --msgbox "\n$NAME，您好！這是我第一個Dialog專案，一起開啟Apache的世界吧！" 10 70
+./choice.sh
