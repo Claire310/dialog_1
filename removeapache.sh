@@ -1,4 +1,4 @@
-rm -rf bro* 
+rm -rf bro* dro* gra*
 sudo rm -rf /var/www
 sudo rm -rf phpsysinfo-3.4.4
 sudo rm -rf v3.4.4.zip
