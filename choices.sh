@@ -31,11 +31,16 @@ get_template_info() {
 
 # 主要迴圈，允許使用者重複選擇
 while true; do
+    # 清理舊檔案
+    rm -rf *.zip
+    rm -rf html &> /dev/null
+    sudo rm -rf /var/www/html/* &> /dev/null
+
     # 使用 dialog 建立選單，並將選擇結果存入變數 USE
-    USE=$(dialog --title "請選擇想要的網站用途" --menu "可上下選擇" 10 50 3 \
+    USE=$(dialog --title "＊.°· 請選擇想要的網站用途 ＊.°" --menu "\n可上下選擇:" 15 60 3 \
         1 "餐廳" \
         2 "攝影作品" \
-        3 "買房" \
+        3 "房地產租售平台" \
         2>&1 >/dev/tty)
 
     clear  # 清除對話框
@@ -56,8 +61,8 @@ while true; do
     case $USE in
         1)
             CATEGORY="餐廳"
-            dialog --title "執行中" --msgbox "\n您選擇的用途為『$CATEGORY』~~" 10 37
-            CHOICE=$(dialog --title "請選擇想要的網頁模板風格" --menu "可上下選擇" 10 50 3 \
+            dialog --title "＊.°· 執行中 ＊.°· " --msgbox "\n您選擇的用途為『$CATEGORY』~" 10 40
+            CHOICE=$(dialog --title "＊.°· 請選擇想要的網頁模板風格 ＊.°·" --menu "\n可上下選擇:" 15 50 3 \
                 1 "餐酒館" \
                 2 "咖啡廳" \
                 3 "甜點店" \
@@ -93,8 +98,8 @@ while true; do
             ;;
         2)
             CATEGORY="攝影作品"
-            dialog --title "執行中" --msgbox "\n您選擇的用途為『$CATEGORY』~~" 10 37
-            CHOICE=$(dialog --title "請選擇想要的網頁模板風格" --menu "可上下選擇" 10 50 3 \
+            dialog --title "＊.°· 執行中 ＊.°· " --msgbox "\n您選擇的用途為『$CATEGORY』~" 10 40
+            CHOICE=$(dialog --title "＊.°· 請選擇想要的網頁模板風格 ＊.°· " --menu "\n可上下選擇:" 15 50 3 \
                 1 "婚紗攝影集" \
                 2 "食物影像紀錄" \
                 3 "攝影集網站設計" \
@@ -129,9 +134,9 @@ while true; do
             esac
             ;;
         3)
-            CATEGORY="買房"
-            dialog --title "執行中" --msgbox "\n您選擇的用途為『$CATEGORY』~~" 10 37
-            CHOICE=$(dialog --title "請選擇想要的網頁模板風格" --menu "可上下選擇" 10 50 3 \
+            CATEGORY="房地產租售平台"
+            dialog --title "＊.°· 執行中 ＊.°· " --msgbox "\n您選擇的用途為『$CATEGORY』~" 10 40
+            CHOICE=$(dialog --title "＊.°· 請選擇想要的網頁模板風格 ＊.°· " --menu "\n可上下選擇:" 15 50 3 \
                 1 "極簡專業" \
                 2 "商業高端" \
                 3 "年輕親民" \
@@ -148,15 +153,15 @@ while true; do
             # 根據選擇執行對應的程式
             case $CHOICE in
                 1)
-                    TEMPLATE_NAME="現代房地產網站"
+                    TEMPLATE_NAME="極簡專業風格"
                     TEMPLATE_ID="simple"
                     ;;
                 2)
-                    TEMPLATE_NAME="專業房屋仲介"
+                    TEMPLATE_NAME="商業高端風格"
                     TEMPLATE_ID="business"
                     ;;
                 3)
-                    TEMPLATE_NAME="豪宅展示網站"
+                    TEMPLATE_NAME="年輕親民風格"
                     TEMPLATE_ID="young"
                     ;;
                 *)
@@ -183,18 +188,18 @@ while true; do
     fi
 
     # 顯示選擇的模板
-    dialog --title "執行中" --msgbox "\n您想要的『$TEMPLATE_NAME』網站即將誕生~~" 10 37
+    dialog --title "＊.°· 執行中 ＊.°· " --msgbox "\n您想要的『$TEMPLATE_NAME』網站即將誕生 " 10 50
 
     # 調用安裝腳本
     if [ -f "$INSTALLER_SCRIPT" ]; then
-        bash "$INSTALLER_SCRIPT" "$TEMPLATE_ID" "$TEMPLATE_URL" "$TEMPLATE_ZIP" "$TEMPLATE_DIR" "$TEMPLATE_NAME"
+        bash "$INSTALLER_SCRIPT" "$TEMPLATE_ID" "$TEMPLATE_URL" "$TEMPLATE_ZIP" "$TEMPLATE_DIR" "$TEMPLATE_NAME" "$SITE_NAME"
     else
         echo "錯誤：找不到腳本 $INSTALLER_SCRIPT，請確認文件是否存在。"
         exit 1
     fi
 
     # 詢問使用者是否要繼續安裝其他模板
-    dialog --title "繼續安裝" --yesno "\n是否要安裝其他網站模板？" 8 40
+    dialog --title "＊.°· 繼續安裝 ＊.°· " --yesno "\n是否要安裝其他網站模板？" 8 40
     CONTINUE=$?
     clear
 
