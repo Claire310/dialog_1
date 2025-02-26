@@ -185,14 +185,6 @@ while true; do
     # 顯示選擇的模板
     dialog --title "執行中" --msgbox "\n您想要的『$TEMPLATE_NAME』網站即將誕生~~" 10 37
 
-    # 顯示假進度條（模擬載入效果）
-    (
-        for i in $(seq 0 100); do
-            sleep 0.05
-            echo $i
-        done
-    ) | dialog --title "進度條" --gauge "正在準備安裝，請稍候..." 10 50 0
-
     # 調用安裝腳本
     if [ -f "$INSTALLER_SCRIPT" ]; then
         bash "$INSTALLER_SCRIPT" "$TEMPLATE_ID" "$TEMPLATE_URL" "$TEMPLATE_ZIP" "$TEMPLATE_DIR" "$TEMPLATE_NAME"
