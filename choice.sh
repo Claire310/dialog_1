@@ -30,7 +30,11 @@ while true; do
                 2 "咖啡廳" \
                 3 "甜點店" \
                 2>&1 >/dev/tty)
-            STYLE_NAME=$(case $STYLE in 1) echo "餐酒館" ;; 2) echo "咖啡廳" ;; 3) echo "甜點店" ;; esac)
+            STYLE_NAME=$(case $STYLE in
+                1) echo "餐酒館" ;;
+                2) echo "咖啡廳" ;;
+                3) echo "甜點店" ;;
+            esac)
             ;;
         2)
             STYLE=$(dialog --title "請選擇風格" --menu "請選擇攝影作品網站的風格" 12 50 3 \
@@ -38,7 +42,11 @@ while true; do
                 2 "餐飲品牌" \
                 3 "作品集展示" \
                 2>&1 >/dev/tty)
-            STYLE_NAME=$(case $STYLE in 1) echo "婚禮網站" ;; 2) echo "餐飲品牌" ;; 3) echo "作品集展示" ;; esac)
+            STYLE_NAME=$(case $STYLE in
+                1) echo "婚禮網站" ;;
+                2) echo "餐飲品牌" ;;
+                3) echo "作品集展示" ;;
+            esac)
             ;;
         3)
             STYLE=$(dialog --title "請選擇風格" --menu "請選擇房地產租售平台的風格" 12 50 3 \
@@ -46,7 +54,11 @@ while true; do
                 2 "商業高端" \
                 3 "年輕親民" \
                 2>&1 >/dev/tty)
-            STYLE_NAME=$(case $STYLE in 1) echo "極簡專業" ;; 2) echo "商業高端" ;; 3) echo "年輕親民" ;; esac)
+            STYLE_NAME=$(case $STYLE in
+                1) echo "極簡專業" ;;
+                2) echo "商業高端" ;;
+                3) echo "年輕親民" ;;
+            esac)
             ;;
     esac
 
@@ -91,7 +103,9 @@ while true; do
         break
     fi
 
-    # 否則，回到風格選擇的 while 迴圈
+    # 否則，移除原本下載好的檔案以及 /var/www/html/* 的檔案，回到風格選擇的 while 迴圈
+    sudo rm -rf /var/www/html/*
+    rm -rf browny-v1.0 grandcoffee html browny.zip grandcoffee.zip
 done
 
 dialog --title "完成" --msgbox "\n感謝您的使用！程式結束。" 10 50
