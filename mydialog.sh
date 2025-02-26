@@ -16,3 +16,4 @@ export SITE_NAME="$SITENAME"
 
 dialog --title "歡迎光臨" --msgbox "\n$NAME，您好！這是我第一個Dialog專案，一起開啟Apache的世界吧！" 10 70
 ./choice.sh
+dialog --title "執行結束" --msgbox "\n恭喜 $NAME 有屬於自己的網頁了！感謝您的使用！" 10 70
