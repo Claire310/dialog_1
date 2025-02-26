@@ -3,7 +3,7 @@
 # 設定檔路徑
 CONFIG_FILE="htmls.conf"
 # 安裝腳本路徑
-INSTALLER_SCRIPT="html_install.sh"
+INSTALLER_SCRIPT="installapache.sh"
 
 # 檢查是否已安裝 dialog
 if ! command -v dialog &> /dev/null; then

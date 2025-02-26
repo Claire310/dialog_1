@@ -106,17 +106,24 @@ while true; do
         done
     ) | dialog --title "進度條" --gauge "正在準備安裝，請稍候..." 10 50 0
 
-    # 執行安裝腳本
+    # 執行安裝腳本並確保不會影響後續流程
     if [ -f "$INSTALLER_SCRIPT" ]; then
         bash "$INSTALLER_SCRIPT" "$TEMPLATE_ID" "$TEMPLATE_URL" "$TEMPLATE_ZIP" "$TEMPLATE_DIR" "$TEMPLATE_NAME"
+        INSTALL_RESULT=$?
     else
         echo "錯誤：找不到腳本 $INSTALLER_SCRIPT，請確認文件是否存在。"
         exit 1
     fi
 
-    # **確保網頁模板執行完畢後，詢問使用者是否滿意**
-    dialog --title "安裝完成" --msgbox "\n您的網站風格『$TEMPLATE_NAME』已安裝完成，請確認。" 10 50
+    # 確保安裝腳本執行成功，才顯示安裝完成訊息
+    if [[ $INSTALL_RESULT -eq 0 ]]; then
+        dialog --title "安裝完成" --msgbox "\n您的網站風格『$TEMPLATE_NAME』已安裝完成，請確認。" 10 50
+    else
+        dialog --title "安裝失敗" --msgbox "\n安裝過程中發生錯誤，請檢查日誌。" 10 50
+        exit 1
+    fi
 
+    # 最終確認
     dialog --title "最終確認" --yesno "您的網站風格為『$TEMPLATE_NAME』。\n這是您想要的嗎？\n\n選擇 [是]：結束程式\n選擇 [否]：重新選擇風格" 12 50
 
     # 如果使用者選擇「是」，則結束
