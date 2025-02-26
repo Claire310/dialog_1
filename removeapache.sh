@@ -1,4 +1,4 @@
-rm -rf bro* dro* gra* ant* pic* res* sav*
+rm -rf bro* dro* gra* ant* pic* res* sav* kla* jac* ant* ren* mak* hom* 
 sudo rm -rf /var/www
 sudo rm -rf phpsysinfo-3.4.4
 sudo rm -rf v3.4.4.zip
