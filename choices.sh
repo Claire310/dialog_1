@@ -26,7 +26,7 @@ fi
 get_template_info() {
     local template="$1"
     local info_type="$2"
-    grep -A10 "^\[template:$template\]" "$CONFIG_FILE" | grep "^$info_type=" | cut -d= -f2- | sed 's/^ *//;s/ *$//'
+    grep -A10 "^\[template:$template\]" "$CONFIG_FILE" | grep "^$info_type=" | head -n 1 | cut -d= -f2- | sed 's/^ *//;s/ *$//'
 }
 
 # 主要迴圈，允許使用者重複選擇

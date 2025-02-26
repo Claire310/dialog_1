@@ -1,0 +1,8 @@
+# Custom dialog configuration with light red (simulating light pink)
+
+screen_color = (white,cyan,off)
+title_color = (white,cyan,off)
+border_color = (white,white,off)
+shadow_color = (black,black,off)
+
+#source ~/.bashrc 
